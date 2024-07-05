@@ -1,10 +1,39 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
-    </dependencies>
-    <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-    </objects>
-</document>
+import UIKit
+
+public class TaskCard {
+    // info
+    static var taskName:String
+    static var date:Date
+    static var tags:[String]
+    static var description:String
+    
+    init(taskName: String, date: Date, tags: [String], description: String) {
+            self.taskName = taskName
+            self.date = date
+            self.tags = tags
+            self.description = description
+        }
+    
+    // pomodoro
+    func isPomodoroOn(pomodoro: Pomodoro) -> Boolean {
+        return Pomodoro // TBD
+    }
+}
+
+class Pomodoro {
+    static var session:Int
+    
+    init(session: Int) {
+            self.session = session
+        }
+    
+    func playPomodoro(session: session) -> s_left {
+        var s_remain = session
+        if s_remain > 0 {
+            // play pomodoro
+            s_done -= 1
+        }
+        return s_remain
+        
+    }
+}

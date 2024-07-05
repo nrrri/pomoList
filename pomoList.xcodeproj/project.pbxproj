@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1508CDC92C37A29100D1BCB0 /* taskCard.Swift in Resources */ = {isa = PBXBuildFile; fileRef = 1508CDC82C37A29100D1BCB0 /* taskCard.Swift */; };
 		154E61562C1D0E6300B7C5F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E61552C1D0E6300B7C5F4 /* AppDelegate.swift */; };
 		154E61582C1D0E6300B7C5F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E61572C1D0E6300B7C5F4 /* SceneDelegate.swift */; };
 		154E615A2C1D0E6300B7C5F4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E61592C1D0E6300B7C5F4 /* MainViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1508CDC82C37A29100D1BCB0 /* taskCard.Swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskCard.Swift; sourceTree = "<group>"; };
 		154E61522C1D0E6300B7C5F4 /* pomoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pomoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		154E61552C1D0E6300B7C5F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		154E61572C1D0E6300B7C5F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				1554EA8C2C1E16C7000FD218 /* PomodoroViewController.swift */,
+				1508CDC82C37A29100D1BCB0 /* taskCard.Swift */,
 				154E616B2C1DF97F00B7C5F4 /* CalendarViewController.swift */,
 				154E61552C1D0E6300B7C5F4 /* AppDelegate.swift */,
 				154E61572C1D0E6300B7C5F4 /* SceneDelegate.swift */,
@@ -136,6 +139,7 @@
 			files = (
 				154E615F2C1D0E6500B7C5F4 /* Assets.xcassets in Resources */,
 				154E61622C1D0E6500B7C5F4 /* Base in Resources */,
+				1508CDC92C37A29100D1BCB0 /* taskCard.Swift in Resources */,
 				154E615D2C1D0E6300B7C5F4 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
