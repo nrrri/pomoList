@@ -1,22 +1,26 @@
 import UIKit
+import Foundation
 
 public class TaskCard {
     // info
     static var taskName:String
-    static var date:Date
-    static var tags:[String]
-    static var description:String
-    
-    init(taskName: String, date: Date, tags: [String], description: String) {
-            self.taskName = taskName
-            self.date = date
-            self.tags = tags
-            self.description = description
-        }
-    
-    // pomodoro
-    func isPomodoroOn(pomodoro: Pomodoro) -> Boolean {
-        return Pomodoro // TBD
+//    static var date:Date
+//    static var tags:[String]
+//    static var description:String
+//    
+//    init(taskName: String, date: Date, tags: [String], description: String) {
+//            self.taskName = taskName
+//            self.date = date
+//            self.tags = tags
+//            self.description = description
+//        }
+//    
+//    // pomodoro
+//    func isPomodoroOn(pomodoro: Pomodoro) -> Boolean {
+//        return Pomodoro // TBD
+//    }
+    init(taskName: String) {
+        self.taskName = taskName
     }
 }
 

@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1508CDC92C37A29100D1BCB0 /* taskCard.Swift in Resources */ = {isa = PBXBuildFile; fileRef = 1508CDC82C37A29100D1BCB0 /* taskCard.Swift */; };
+		153FDE612C39E975009B9F0F /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FDE602C39E975009B9F0F /* Task.swift */; };
+		153FDE632C39F9EA009B9F0F /* TaskCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FDE622C39F9EA009B9F0F /* TaskCardTableViewCell.swift */; };
+		153FDE652C39FDE5009B9F0F /* colorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FDE642C39FDE5009B9F0F /* colorScheme.swift */; };
+		153FDE672C3A2AA6009B9F0F /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FDE662C3A2AA6009B9F0F /* PaddingLabel.swift */; };
 		154E61562C1D0E6300B7C5F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E61552C1D0E6300B7C5F4 /* AppDelegate.swift */; };
 		154E61582C1D0E6300B7C5F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E61572C1D0E6300B7C5F4 /* SceneDelegate.swift */; };
 		154E615A2C1D0E6300B7C5F4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E61592C1D0E6300B7C5F4 /* MainViewController.swift */; };
@@ -20,7 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1508CDC82C37A29100D1BCB0 /* taskCard.Swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taskCard.Swift; sourceTree = "<group>"; };
+		153FDE602C39E975009B9F0F /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		153FDE622C39F9EA009B9F0F /* TaskCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCardTableViewCell.swift; sourceTree = "<group>"; };
+		153FDE642C39FDE5009B9F0F /* colorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorScheme.swift; sourceTree = "<group>"; };
+		153FDE662C3A2AA6009B9F0F /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		154E61522C1D0E6300B7C5F4 /* pomoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pomoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		154E61552C1D0E6300B7C5F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		154E61572C1D0E6300B7C5F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,8 +70,8 @@
 		154E61542C1D0E6300B7C5F4 /* pomoList */ = {
 			isa = PBXGroup;
 			children = (
+				153FDE602C39E975009B9F0F /* Task.swift */,
 				1554EA8C2C1E16C7000FD218 /* PomodoroViewController.swift */,
-				1508CDC82C37A29100D1BCB0 /* taskCard.Swift */,
 				154E616B2C1DF97F00B7C5F4 /* CalendarViewController.swift */,
 				154E61552C1D0E6300B7C5F4 /* AppDelegate.swift */,
 				154E61572C1D0E6300B7C5F4 /* SceneDelegate.swift */,
@@ -75,6 +81,9 @@
 				154E61602C1D0E6500B7C5F4 /* LaunchScreen.storyboard */,
 				154E61632C1D0E6500B7C5F4 /* Info.plist */,
 				154E61692C1D0EF900B7C5F4 /* AddEditViewController.swift */,
+				153FDE622C39F9EA009B9F0F /* TaskCardTableViewCell.swift */,
+				153FDE642C39FDE5009B9F0F /* colorScheme.swift */,
+				153FDE662C3A2AA6009B9F0F /* PaddingLabel.swift */,
 			);
 			path = pomoList;
 			sourceTree = "<group>";
@@ -139,7 +148,6 @@
 			files = (
 				154E615F2C1D0E6500B7C5F4 /* Assets.xcassets in Resources */,
 				154E61622C1D0E6500B7C5F4 /* Base in Resources */,
-				1508CDC92C37A29100D1BCB0 /* taskCard.Swift in Resources */,
 				154E615D2C1D0E6300B7C5F4 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,10 +161,14 @@
 			files = (
 				154E616C2C1DF97F00B7C5F4 /* CalendarViewController.swift in Sources */,
 				154E616A2C1D0EF900B7C5F4 /* AddEditViewController.swift in Sources */,
+				153FDE632C39F9EA009B9F0F /* TaskCardTableViewCell.swift in Sources */,
 				154E615A2C1D0E6300B7C5F4 /* MainViewController.swift in Sources */,
 				1554EA8D2C1E16C7000FD218 /* PomodoroViewController.swift in Sources */,
 				154E61562C1D0E6300B7C5F4 /* AppDelegate.swift in Sources */,
+				153FDE672C3A2AA6009B9F0F /* PaddingLabel.swift in Sources */,
+				153FDE612C39E975009B9F0F /* Task.swift in Sources */,
 				154E61582C1D0E6300B7C5F4 /* SceneDelegate.swift in Sources */,
+				153FDE652C39FDE5009B9F0F /* colorScheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,8 +325,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,8 +355,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
