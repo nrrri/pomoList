@@ -17,17 +17,31 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var currentMonth: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("test")
         
         setTableView()
+        
+        
+        setUIMonth(label: currentMonth)
     }
     
     func setTableView() {
         tableView.frame = view.bounds
         tableView.rowHeight = 124
         tableView.contentInsetAdjustmentBehavior = .never
+    }
+    
+    func setUIMonth(label: UILabel) {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd")
+        label.text = dateFormatter.string(from: date)
     }
 
 }
@@ -65,6 +79,7 @@ extension MainViewController: UITableViewDataSource {
             cell.pomodoroView.isHidden = true
             cell.sessions.text = task.pomodoro.session
             
+            /// button
             cell.tappedBtn = {[unowned self] in
                 let story = UIStoryboard(name: "Main", bundle: nil)
                 let controller = story.instantiateViewController(identifier: "PomodoroViewController") as! PomodoroViewController
@@ -72,6 +87,13 @@ extension MainViewController: UITableViewDataSource {
                 
             }
         }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd")
+        print(dateFormatter.string(from: task.date))
         
         return cell
     }
