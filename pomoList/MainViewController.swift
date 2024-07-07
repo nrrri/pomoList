@@ -23,8 +23,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setTableView()
-        
-        
         setUIMonth(label: currentMonth)
     }
     
@@ -67,17 +65,18 @@ extension MainViewController: UITableViewDataSource {
         
         
         cell.title.text = task.taskName
-        cell.time.text = task.time
         
+        cell.time.text = task.time
         cell.time.backgroundColor = UIColor(red: RGBGray100.red.value, green: RGBGray100.green.value, blue: RGBGray100.blue.value, alpha: 1.0)
         cell.time.layer.masksToBounds = true;
         cell.time.layer.cornerRadius = 6;
         
         cell.detail.text = task.description
         
-        if task.pomodoro.isActive == false {
+        if !task.pomodoro.isActive {
             cell.pomodoroView.isHidden = true
-            cell.sessions.text = task.pomodoro.session
+        } else {
+            cell.pomodoroView.isHidden = false
             
             /// button
             cell.tappedBtn = {[unowned self] in
@@ -86,8 +85,11 @@ extension MainViewController: UITableViewDataSource {
                 self.present(controller, animated: true, completion: nil)
                 
             }
+            
+            cell.sessions.text = task.pomodoro.session
         }
         
+       
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
