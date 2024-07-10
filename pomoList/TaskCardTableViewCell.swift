@@ -12,8 +12,6 @@ class TaskCardTableViewCell: UITableViewCell {
     
     @IBOutlet weak var title: UILabel!
     
-    @IBOutlet weak var time: UILabel!
-    
     @IBOutlet weak var detail: UILabel!
     
     @IBOutlet weak var pomodoroView: UIView!
