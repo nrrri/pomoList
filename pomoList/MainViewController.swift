@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class MainViewController: UIViewController {
     
 //    let tasks = [
@@ -14,6 +15,8 @@ class MainViewController: UIViewController {
 //        Task(taskName: "Working on Final project", date: Date(), time: "4:00 PM", description: "df,gnad;flkhnfape;dlhna;hgb", pomodoro: Pomodoro(isActive: true, session: "2")),
 //        Task(taskName: "Reading book", date: Date(), time: "8:00 PM", description: "dksghldksa;gkdnsa;gkhdsa;gnkds;a", pomodoro: Pomodoro(isActive: false, session: ""))
 //    ]
+    
+//    var tasks = [(TodoList(taskName: "Test1", description: "des 1", isActive: true, session: "1"))]
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,16 +27,28 @@ class MainViewController: UIViewController {
     @IBOutlet weak var planForTheDay: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        // test
         print("in main ---")
         print(tasks)
+        // ----------
+        
+        setUIMonth(label: currentMonth)
+//        setCurrentDate(label: currentDate)
+        
         if tasks.count == 0 {
             planForTheDay.text = "No Task Today, Let's add new task!"
+        } else {
+            planForTheDay.text = "Plan For The Day"
         }
         
         setTableView()
-        setUIMonth(label: currentMonth)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
-        setCurrentDate(label: currentDate)
+        count += 1
+        print("will appear \(count)")
+        
     }
     
     func setTableView() {
@@ -48,7 +63,7 @@ class MainViewController: UIViewController {
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMM")
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd")
         label.text = dateFormatter.string(from: date)
     }
     
@@ -76,43 +91,31 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "task card", for: indexPath) as! TaskCardTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCardTableViewCell", for: indexPath) as! TaskCardTableViewCell
+        
         let task = tasks[indexPath.section]
         cell.layer.cornerRadius = 16
         
-        
-        cell.title.text = task.taskName
+        // task's name
+        cell.title.text = task?.taskName
         
 //        cell.time.text = "task.time"
 //        cell.time.backgroundColor = UIColor(red: RGBGray100.red.value, green: RGBGray100.green.value, blue: RGBGray100.blue.value, alpha: 1.0)
 //        cell.time.layer.masksToBounds = true;
 //        cell.time.layer.cornerRadius = 6;
         
-        cell.detail.text = task.description
+        // detail
+        cell.detail.text = task?.description
         
-        if !task.isPomodoroActive {
+        if !(task?.isPomodoroActive ?? true) {
             cell.pomodoroView.isHidden = true
             
         } else {
             cell.pomodoroView.isHidden = false             
             }
-            
-            cell.sessions.text = task.session
         
-        /// button
-        cell.tappedBtn = {[unowned self] in
-            let story = UIStoryboard(name: "Main", bundle: nil)
-            let controller = story.instantiateViewController(identifier: "PomodoroViewController") as! PomodoroViewController
-            self.present(controller, animated: true, completion: nil)
-//
-        }
-        
-       
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd")
+        // pomodoro session
+        cell.sessions.text = task?.session
         
         return cell
     }

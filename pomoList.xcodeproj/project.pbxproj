@@ -18,7 +18,6 @@
 		154E615F2C1D0E6500B7C5F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154E615E2C1D0E6500B7C5F4 /* Assets.xcassets */; };
 		154E61622C1D0E6500B7C5F4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 154E61612C1D0E6500B7C5F4 /* Base */; };
 		154E616A2C1D0EF900B7C5F4 /* AddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E61692C1D0EF900B7C5F4 /* AddEditViewController.swift */; };
-		154E616C2C1DF97F00B7C5F4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E616B2C1DF97F00B7C5F4 /* CalendarViewController.swift */; };
 		1554EA8D2C1E16C7000FD218 /* PomodoroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1554EA8C2C1E16C7000FD218 /* PomodoroViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +35,6 @@
 		154E61612C1D0E6500B7C5F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		154E61632C1D0E6500B7C5F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		154E61692C1D0EF900B7C5F4 /* AddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditViewController.swift; sourceTree = "<group>"; };
-		154E616B2C1DF97F00B7C5F4 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		1554EA8C2C1E16C7000FD218 /* PomodoroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +70,6 @@
 			children = (
 				153FDE602C39E975009B9F0F /* Task.swift */,
 				1554EA8C2C1E16C7000FD218 /* PomodoroViewController.swift */,
-				154E616B2C1DF97F00B7C5F4 /* CalendarViewController.swift */,
 				154E61552C1D0E6300B7C5F4 /* AppDelegate.swift */,
 				154E61572C1D0E6300B7C5F4 /* SceneDelegate.swift */,
 				154E61592C1D0E6300B7C5F4 /* MainViewController.swift */,
@@ -159,7 +156,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				154E616C2C1DF97F00B7C5F4 /* CalendarViewController.swift in Sources */,
 				154E616A2C1D0EF900B7C5F4 /* AddEditViewController.swift in Sources */,
 				153FDE632C39F9EA009B9F0F /* TaskCardTableViewCell.swift in Sources */,
 				154E615A2C1D0E6300B7C5F4 /* MainViewController.swift in Sources */,

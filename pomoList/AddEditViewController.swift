@@ -9,6 +9,8 @@ import UIKit
 
 class AddEditViewController: UIViewController {
 
+    var setSession: String = "1"
+    
     // create list
     // title
     @IBOutlet var titleView: UIView!
@@ -22,10 +24,6 @@ class AddEditViewController: UIViewController {
     @IBOutlet var sessions: UISegmentedControl!
     @IBOutlet var pomodoroToggle: UISwitch!
 
-    @IBOutlet var saveBtn: UIButton!
-    
-    var setSession: String = "1"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         roundCorner()
@@ -64,23 +62,18 @@ class AddEditViewController: UIViewController {
             default:
                 setSession = "0"
             }
-       
-        
     }
     
     @IBAction func saveList(_ sender: UIButton) {
-        // when the button is clicked -> save newTask to array
-        let newTask = TodoList(taskName: titleName.text ?? "" , description: todoListDetail.text ?? "", isActive: pomodoroToggle.isOn, session: setSession)
-        
-        tasks.append(newTask)
-        
-        print("Clicked!")
-        print(tasks.self)
+//        // when the button is clicked -> save newTask to array
+//        let newTask = TodoList(taskName: titleName.text ?? "" , description: todoListDetail.text ?? "", isActive: pomodoroToggle.isOn, session: setSession)
+//        
+//        tasks.append(newTask)
         
         // navigate back to homepage
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = storyboard?.instantiateViewController(identifier: "MainViewController") as! MainViewController
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
 
 }

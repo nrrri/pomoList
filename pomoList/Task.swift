@@ -1,7 +1,9 @@
 import UIKit
 import Foundation
 
-var tasks = [TodoList]()
+var tasks = [TodoList?]()
+
+var count: Int = 0
 
 struct TodoList {
     // info

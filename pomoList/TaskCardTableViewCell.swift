@@ -9,7 +9,6 @@ import UIKit
 
 class TaskCardTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var title: UILabel!
     
     @IBOutlet weak var detail: UILabel!
@@ -19,12 +18,6 @@ class TaskCardTableViewCell: UITableViewCell {
     @IBOutlet weak var sessions: UILabel!
     
     @IBOutlet weak var playButton: UIButton!
-    
-    var tappedBtn: (() -> ())?
-    @IBAction func tappedPlay(_ sender: UIButton) {
-        tappedBtn?()
-        print("tap")
-    }
     
 }
     
