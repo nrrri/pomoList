@@ -187,7 +187,7 @@
                                     <constraint firstAttribute="width" constant="350" id="waT-8n-tDQ"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCardTableViewCell" rowHeight="124" id="hD2-J2-zbJ" customClass="TaskCardTableViewCell" customModule="pomoList" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCardTableViewCell" rowHeight="124" id="hD2-J2-zbJ" customClass="TaskCardTableViewCell" customModule="pomoList" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.333332061767578" width="350" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hD2-J2-zbJ" id="b9z-RN-2eJ">
@@ -236,7 +236,6 @@
                                                             </buttonConfiguration>
                                                             <connections>
                                                                 <action selector="buttonTapped:" destination="hD2-J2-zbJ" eventType="touchUpInside" id="3Ym-aa-idu"/>
-                                                                <action selector="playPomodoro:" destination="hD2-J2-zbJ" eventType="touchUpInside" id="whZ-cr-6Kc"/>
                                                                 <segue destination="i6Q-VD-qhw" kind="presentation" modalPresentationStyle="fullScreen" id="ezE-mE-yES"/>
                                                             </connections>
                                                         </button>
@@ -346,7 +345,7 @@
         <!--pomodoro-->
         <scene sceneID="HT0-G5-r6B">
             <objects>
-                <viewController title="pomodoro" id="i6Q-VD-qhw" customClass="PomodoroViewController" customModule="pomoList" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PomodoroViewController" title="pomodoro" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i6Q-VD-qhw" customClass="PomodoroViewController" customModule="pomoList" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I3C-ns-vs7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
