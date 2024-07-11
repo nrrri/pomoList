@@ -64,15 +64,22 @@ class AddEditViewController: UIViewController {
             }
     }
     
+    func setNewTask () {
+        let newTask = TodoList(taskName: titleName.text ?? "a", description: todoListDetail.text ?? "a", isActive: pomodoroToggle.isOn, session: setSession)
+        tasks.append(newTask)
+    }
+    
     @IBAction func saveList(_ sender: UIButton) {
-//        // when the button is clicked -> save newTask to array
-//        let newTask = TodoList(taskName: titleName.text ?? "" , description: todoListDetail.text ?? "", isActive: pomodoroToggle.isOn, session: setSession)
-//        
-//        tasks.append(newTask)
+//        setNewTask()
+        print("click")
+        let dummy = Demo(name: titleName.text ?? "", description: todoListDetail.text ?? "", isActive: pomodoroToggle.isOn, ss: setSession)
+        demo.append(dummy)
         
+        print(demo)
         // navigate back to homepage
         let vc = storyboard?.instantiateViewController(identifier: "MainViewController") as! MainViewController
         vc.modalPresentationStyle = .fullScreen
+
         present(vc, animated: true, completion: nil)
     }
 

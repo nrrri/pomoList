@@ -1,15 +1,28 @@
 import UIKit
 import Foundation
 
-var tasks = [TodoList?]()
+var tasks = [TodoList]()
+var demo = [Demo]()
 
 var count: Int = 0
+
+struct Demo {
+    var name: String!
+    var description: String = ""
+    var isPomodoroActive: Bool = true
+    var session: String = "1"
+    
+    init(name: String, description: String, isActive: Bool, ss: String) {
+        self.name = name
+        self.description = description
+        self.isPomodoroActive = isActive
+        self.session = ss
+    }
+}
 
 struct TodoList {
     // info
     var taskName:String
-//    var date: Date
-//    var time: String
     var description:String
     
     // pomodoro
@@ -18,8 +31,6 @@ struct TodoList {
     
     init(taskName: String, description: String, isActive: Bool, session: String) {
         self.taskName = taskName
-//        self.date = date
-//        self.time = time
         self.description = description
         self.isPomodoroActive = isActive
         self.session = session

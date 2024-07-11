@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class MainViewController: UIViewController {
     
 //    let tasks = [
@@ -18,6 +17,7 @@ class MainViewController: UIViewController {
     
 //    var tasks = [(TodoList(taskName: "Test1", description: "des 1", isActive: true, session: "1"))]
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var currentMonth: UILabel!
@@ -27,27 +27,22 @@ class MainViewController: UIViewController {
     @IBOutlet weak var planForTheDay: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // test
-        print("in main ---")
-        print(tasks)
-        // ----------
         
         setUIMonth(label: currentMonth)
 //        setCurrentDate(label: currentDate)
         
-        if tasks.count == 0 {
+        count += 1
+        print(">>> IN MAIN - will appear \(count)")
+        print("num of tasks \(demo.count)")
+        print(demo)
+        
+        if demo.count == 0 {
             planForTheDay.text = "No Task Today, Let's add new task!"
         } else {
             planForTheDay.text = "Plan For The Day"
+            setTableView()
         }
         
-        setTableView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        count += 1
-        print("will appear \(count)")
         
     }
     
@@ -82,6 +77,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        // broken here
         return tasks.count
     }
     
@@ -92,22 +88,18 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCardTableViewCell", for: indexPath) as! TaskCardTableViewCell
-        
-        let task = tasks[indexPath.section]
+
+        // import array
+        let task = demo[indexPath.section]
         cell.layer.cornerRadius = 16
         
         // task's name
-        cell.title.text = task?.taskName
-        
-//        cell.time.text = "task.time"
-//        cell.time.backgroundColor = UIColor(red: RGBGray100.red.value, green: RGBGray100.green.value, blue: RGBGray100.blue.value, alpha: 1.0)
-//        cell.time.layer.masksToBounds = true;
-//        cell.time.layer.cornerRadius = 6;
+        cell.title.text = task.name
         
         // detail
-        cell.detail.text = task?.description
+        cell.detail.text = task.description
         
-        if !(task?.isPomodoroActive ?? true) {
+        if !(task.isPomodoroActive) {
             cell.pomodoroView.isHidden = true
             
         } else {
@@ -115,7 +107,7 @@ extension MainViewController: UITableViewDataSource {
             }
         
         // pomodoro session
-        cell.sessions.text = task?.session
+        cell.sessions.text = task.session
         
         return cell
     }
