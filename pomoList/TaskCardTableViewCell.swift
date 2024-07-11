@@ -19,5 +19,14 @@ class TaskCardTableViewCell: UITableViewCell {
     
     @IBOutlet weak var playButton: UIButton!
     
+    weak var delegate: TaskCardTableViewCellDelegate?
+
+        @IBAction func buttonTapped(_ sender: UIButton) {
+            delegate?.didTapButton(in: self)
+        }
+}
+
+protocol TaskCardTableViewCellDelegate: AnyObject {
+    func didTapButton(in cell: TaskCardTableViewCell)
 }
     

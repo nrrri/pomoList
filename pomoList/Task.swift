@@ -1,12 +1,11 @@
 import UIKit
 import Foundation
 
-var tasks = [TodoList]()
-var demo = [Demo]()
+var todoList = [TodoList]()
 
 var count: Int = 0
 
-struct Demo {
+struct TodoList {
     var name: String!
     var description: String = ""
     var isPomodoroActive: Bool = true
@@ -20,20 +19,20 @@ struct Demo {
     }
 }
 
-struct TodoList {
-    // info
-    var taskName:String
-    var description:String
-    
-    // pomodoro
-    var isPomodoroActive: Bool
-    var session: String
-    
-    init(taskName: String, description: String, isActive: Bool, session: String) {
-        self.taskName = taskName
-        self.description = description
-        self.isPomodoroActive = isActive
-        self.session = session
-    }
-
-}
+//struct TodoList {
+//    // info
+//    var taskName:String
+//    var description:String
+//    
+//    // pomodoro
+//    var isPomodoroActive: Bool
+//    var session: String
+//    
+//    init(taskName: String, description: String, isActive: Bool, session: String) {
+//        self.taskName = taskName
+//        self.description = description
+//        self.isPomodoroActive = isActive
+//        self.session = session
+//    }
+//
+//}

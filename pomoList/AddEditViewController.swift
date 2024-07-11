@@ -64,23 +64,25 @@ class AddEditViewController: UIViewController {
             }
     }
     
-    func setNewTask () {
-        let newTask = TodoList(taskName: titleName.text ?? "a", description: todoListDetail.text ?? "a", isActive: pomodoroToggle.isOn, session: setSession)
-        tasks.append(newTask)
-    }
-    
     @IBAction func saveList(_ sender: UIButton) {
-//        setNewTask()
-        print("click")
-        let dummy = Demo(name: titleName.text ?? "", description: todoListDetail.text ?? "", isActive: pomodoroToggle.isOn, ss: setSession)
-        demo.append(dummy)
-        
-        print(demo)
+        guard let title = titleName.text, !title.isEmpty else {
+                showAlert(message: "Title cannot be empty")
+                return
+            }
+
+        let newTodoList = TodoList(name: titleName.text ?? "", description: todoListDetail.text ?? "", isActive: pomodoroToggle.isOn, ss: setSession)
+        todoList.append(newTodoList)
+
         // navigate back to homepage
         let vc = storyboard?.instantiateViewController(identifier: "MainViewController") as! MainViewController
         vc.modalPresentationStyle = .fullScreen
-
         present(vc, animated: true, completion: nil)
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
 }

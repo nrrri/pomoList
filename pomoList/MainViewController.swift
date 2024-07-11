@@ -9,15 +9,6 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-//    let tasks = [
-//        Task(taskName: "Study Math", date: Date(), time: "10:00 AM", description: "sdfgnkdlsagnl", pomodoro: Pomodoro(isActive: true, session: "1")),
-//        Task(taskName: "Working on Final project", date: Date(), time: "4:00 PM", description: "df,gnad;flkhnfape;dlhna;hgb", pomodoro: Pomodoro(isActive: true, session: "2")),
-//        Task(taskName: "Reading book", date: Date(), time: "8:00 PM", description: "dksghldksa;gkdnsa;gkhdsa;gnkds;a", pomodoro: Pomodoro(isActive: false, session: ""))
-//    ]
-    
-//    var tasks = [(TodoList(taskName: "Test1", description: "des 1", isActive: true, session: "1"))]
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var currentMonth: UILabel!
@@ -31,12 +22,12 @@ class MainViewController: UIViewController {
         setUIMonth(label: currentMonth)
 //        setCurrentDate(label: currentDate)
         
-        count += 1
-        print(">>> IN MAIN - will appear \(count)")
-        print("num of tasks \(demo.count)")
-        print(demo)
+//        count += 1
+//        print(">>> IN MAIN -- \(count)")
+//        print("num of list: \(demo.count)")
+//        print(demo)
         
-        if demo.count == 0 {
+        if todoList.count == 0 {
             planForTheDay.text = "No Task Today, Let's add new task!"
         } else {
             planForTheDay.text = "Plan For The Day"
@@ -74,11 +65,11 @@ class MainViewController: UIViewController {
 
 }
 
-extension MainViewController: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource, TaskCardTableViewCellDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // broken here
-        return tasks.count
+       
+        return todoList.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,11 +81,11 @@ extension MainViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCardTableViewCell", for: indexPath) as! TaskCardTableViewCell
 
         // import array
-        let task = demo[indexPath.section]
+        let task = todoList[indexPath.section]
         cell.layer.cornerRadius = 16
         
         // task's name
-        cell.title.text = task.name
+        cell.title.text = task.name.uppercased()
         
         // detail
         cell.detail.text = task.description
@@ -103,13 +94,28 @@ extension MainViewController: UITableViewDataSource {
             cell.pomodoroView.isHidden = true
             
         } else {
-            cell.pomodoroView.isHidden = false             
-            }
+            cell.pomodoroView.isHidden = false  
+            
+            // pomodoro session
+            cell.sessions.text = task.session
+        }
         
-        // pomodoro session
-        cell.sessions.text = task.session
+        cell.delegate = self // Set the delegate
         
         return cell
     }
+    
+    func didTapButton(in cell: TaskCardTableViewCell) {
+        print("Click play!")
+            // Find the indexPath for the cell
+        if let indexPath = tableView.indexPath(for: cell) {
+//                let task = todoList[indexPath.section]
+                // Perform navigation to PomodoroViewController
+                let vc = storyboard?.instantiateViewController(withIdentifier: "PomodoroViewController") as! PomodoroViewController
+
+                vc.modalPresentationStyle = .fullScreen
+                present(vc, animated: true, completion: nil)
+            }
+        }
     
 }
