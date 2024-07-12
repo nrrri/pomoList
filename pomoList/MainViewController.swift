@@ -107,15 +107,33 @@ extension MainViewController: UITableViewDataSource, TaskCardTableViewCellDelega
     
     func didTapButton(in cell: TaskCardTableViewCell) {
         print("Click play!")
+        
             // Find the indexPath for the cell
         if let indexPath = tableView.indexPath(for: cell) {
-//                let task = todoList[indexPath.section]
+                let task = todoList[indexPath.section]
+            
                 // Perform navigation to PomodoroViewController
                 let vc = storyboard?.instantiateViewController(withIdentifier: "PomodoroViewController") as! PomodoroViewController
-
+            
+                print(indexPath.section)
+            
                 vc.modalPresentationStyle = .fullScreen
                 present(vc, animated: true, completion: nil)
             }
         }
     
 }
+
+//extension MainViewController: UITableViewDelegate {
+//    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if let vc = storyboard?.instantiateViewController(identifier: "PomodoroViewController") as? PomodoroViewController {
+//            
+//            vc.task = todoList[indexPath.section]
+//            
+//            vc.modalPresentationStyle = .fullScreen
+//            present(vc, animated: true, completion: nil)
+//        }
+//            
+//    }
+//}
