@@ -36,6 +36,7 @@ class AddEditViewController: UIViewController {
         detailView.layer.cornerRadius = roundCorner
         pomodoroView.layer.cornerRadius = roundCorner
     }
+    // Maybe you could create a global constant that centralizes the rounded corner value, that way you would need to change only on one place when necessary?
     
     @IBAction func setPomodoroActive(_ sender: UISwitch) {
         if pomodoroToggle.isOn {
@@ -74,7 +75,7 @@ class AddEditViewController: UIViewController {
         todoList.append(newTodoList)
 
         // navigate back to homepage
-        let vc = storyboard?.instantiateViewController(identifier: "MainViewController") as! MainViewController
+        let vc = storyboard?.instantiateViewController(identifier: "MainViewController") as! MainViewController // Try to avoid force casting like this,  it may crash the application when a simple warning that something went wrong could be enough.
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }

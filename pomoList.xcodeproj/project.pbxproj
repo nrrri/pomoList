@@ -19,6 +19,7 @@
 		154E61622C1D0E6500B7C5F4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 154E61612C1D0E6500B7C5F4 /* Base */; };
 		154E616A2C1D0EF900B7C5F4 /* AddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E61692C1D0EF900B7C5F4 /* AddEditViewController.swift */; };
 		1554EA8D2C1E16C7000FD218 /* PomodoroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1554EA8C2C1E16C7000FD218 /* PomodoroViewController.swift */; };
+		A0DE5F502C42C6D9003177F3 /* Feedback.md in Resources */ = {isa = PBXBuildFile; fileRef = A0DE5F4F2C42C6CC003177F3 /* Feedback.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		154E61632C1D0E6500B7C5F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		154E61692C1D0EF900B7C5F4 /* AddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditViewController.swift; sourceTree = "<group>"; };
 		1554EA8C2C1E16C7000FD218 /* PomodoroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroViewController.swift; sourceTree = "<group>"; };
+		A0DE5F4F2C42C6CC003177F3 /* Feedback.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Feedback.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		154E61542C1D0E6300B7C5F4 /* pomoList */ = {
 			isa = PBXGroup;
 			children = (
+				A0DE5F4F2C42C6CC003177F3 /* Feedback.md */,
 				153FDE602C39E975009B9F0F /* Task.swift */,
 				1554EA8C2C1E16C7000FD218 /* PomodoroViewController.swift */,
 				154E61552C1D0E6300B7C5F4 /* AppDelegate.swift */,
@@ -146,6 +149,7 @@
 				154E615F2C1D0E6500B7C5F4 /* Assets.xcassets in Resources */,
 				154E61622C1D0E6500B7C5F4 /* Base in Resources */,
 				154E615D2C1D0E6300B7C5F4 /* Base in Resources */,
+				A0DE5F502C42C6D9003177F3 /* Feedback.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

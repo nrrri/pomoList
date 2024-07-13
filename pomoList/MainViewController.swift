@@ -62,6 +62,7 @@ class MainViewController: UIViewController {
         dateFormatter.setLocalizedDateFormatFromTemplate("d")
         label.text = dateFormatter.string(from: date)
     }
+    // Maybe the previous two functions could become extensions on UILabel to make them reusable wherever you may need?
 
 }
 
@@ -78,7 +79,7 @@ extension MainViewController: UITableViewDataSource, TaskCardTableViewCellDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCardTableViewCell", for: indexPath) as! TaskCardTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCardTableViewCell", for: indexPath) as! TaskCardTableViewCell // Try to avoid force casting like this,  it may crash the application when a simple warning that something went wrong could be enough.
 
         // import array
         let task = todoList[indexPath.section]
@@ -113,7 +114,7 @@ extension MainViewController: UITableViewDataSource, TaskCardTableViewCellDelega
                 let task = todoList[indexPath.section]
             
                 // Perform navigation to PomodoroViewController
-                let vc = storyboard?.instantiateViewController(withIdentifier: "PomodoroViewController") as! PomodoroViewController
+                let vc = storyboard?.instantiateViewController(withIdentifier: "PomodoroViewController") as! PomodoroViewController // Try to avoid force casting like this,  it may crash the application when a simple warning that something went wrong could be enough.
             
                 print(indexPath.section)
             
