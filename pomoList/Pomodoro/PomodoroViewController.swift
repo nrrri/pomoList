@@ -122,7 +122,6 @@ class PomodoroViewController: UIViewController {
             // show alert done task
             print("Goodjob! you just finish (title's name)!")
         
-        
     }
     
     func updateTimerLabel() {
