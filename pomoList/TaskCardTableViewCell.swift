@@ -9,8 +9,7 @@ import UIKit
 
 // proocol
 protocol TaskCardTableViewCellDelegate: AnyObject {
-    func didTapButton(in cell: TaskCardTableViewCell)
-    func tappedPlay(sender: TaskCardTableViewCell)
+        func tappedPlay(sender: TaskCardTableViewCell)
 }
 
 class TaskCardTableViewCell: UITableViewCell {

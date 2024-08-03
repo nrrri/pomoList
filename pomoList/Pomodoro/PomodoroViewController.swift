@@ -43,8 +43,6 @@ class PomodoroViewController: UIViewController {
         }
        
         sessions.text = "\(remainSession)/\(pomodoroSessions)"
-        
-        
        
         // Set timer
         Task {
@@ -106,7 +104,6 @@ class PomodoroViewController: UIViewController {
     
     @objc func updateTimer() {
        
-        
         while remainSession > 0 {
             
             remainSession -= 1
