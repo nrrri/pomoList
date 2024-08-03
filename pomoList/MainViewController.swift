@@ -18,14 +18,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var planForTheDay: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
         
         setUIMonth(label: currentMonth)
-//        setCurrentDate(label: currentDate)
-        
-//        count += 1
-//        print(">>> IN MAIN -- \(count)")
-//        print("num of list: \(demo.count)")
-//        print(demo)
+
         
         if todoList.count == 0 {
             planForTheDay.text = "No Task Today, Let's add new task!"
@@ -84,7 +80,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
         // import array
         let task = todoList[indexPath.section]
         roundCorner(view: cell)
-//           cell.layer.cornerRadius = 16
         
         // task's name
            cell.title.text = task.name?.uppercased()
@@ -108,8 +103,22 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
         return cell
     }
 
+   // DELETE cell
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
     
-    // Delegate
+    // update table when delete cell
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                todoList.remove(at: indexPath.section)
+                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+            }
+
+    }
+    
+    
+    // Delegate for passing data to pomodoro vc
     
     func tappedPlay(sender: TaskCardTableViewCell) {
         
