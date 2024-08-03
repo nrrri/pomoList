@@ -26,15 +26,9 @@ class AddEditViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        roundCorner()
-    }
-    
-    func roundCorner() {
-        let roundCorner:CGFloat = 16
-        // round corner
-        titleView.layer.cornerRadius = roundCorner
-        detailView.layer.cornerRadius = roundCorner
-        pomodoroView.layer.cornerRadius = roundCorner
+        roundCorner(view: titleView)
+        roundCorner(view: detailView)
+        roundCorner(view: pomodoroView)
     }
     
     @IBAction func setPomodoroActive(_ sender: UISwitch) {
@@ -74,7 +68,8 @@ class AddEditViewController: UIViewController {
         todoList.append(newTodoList)
 
         // navigate back to homepage
-        let vc = storyboard?.instantiateViewController(identifier: "MainViewController") as! MainViewController
+        guard let vc = storyboard?.instantiateViewController(identifier: "MainViewController") as? MainViewController else {return}
+            
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
     }

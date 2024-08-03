@@ -4,15 +4,14 @@
 //
 //  Created by Narissorn Chowarun on 2024-08-03.
 //
+import UIKit
 
-import SwiftUI
+let CornerRadious: CGFloat = 16
 
-struct Utilities: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    Utilities()
+func roundCorner(view: UIView) {
+    // round corner
+     view.layer.cornerRadius = CornerRadious
+//    titleView.layer.cornerRadius = roundCorner
+//    detailView.layer.cornerRadius = roundCorner
+//    pomodoroView.layer.cornerRadius = roundCorner
 }

@@ -65,8 +65,8 @@ class MainViewController: UIViewController {
 
 }
 
-extension MainViewController: UITableViewDataSource, TaskCardTableViewCellDelegate {
-    
+extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCardTableViewCellDelegate {
+       
     func numberOfSections(in tableView: UITableView) -> Int {
        
         return todoList.count
@@ -78,17 +78,19 @@ extension MainViewController: UITableViewDataSource, TaskCardTableViewCellDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCardTableViewCell", for: indexPath) as! TaskCardTableViewCell
+       guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCardTableViewCell", for: indexPath) 
+                as? TaskCardTableViewCell else {return UITableViewCell()}
 
         // import array
         let task = todoList[indexPath.section]
-        cell.layer.cornerRadius = 16
+        roundCorner(view: cell)
+//           cell.layer.cornerRadius = 16
         
         // task's name
-        cell.title.text = task.name.uppercased()
+           cell.title.text = task.name?.uppercased()
         
         // detail
-        cell.detail.text = task.description
+           cell.detail.text = task.description
         
         if !(task.isPomodoroActive) {
             cell.pomodoroView.isHidden = true
@@ -100,30 +102,53 @@ extension MainViewController: UITableViewDataSource, TaskCardTableViewCellDelega
             cell.sessions.text = task.session
         }
         
+        // assigning delegate
         cell.delegate = self // Set the delegate
         
         return cell
     }
     
+    
+    
+    // Delegate
+    
     func didTapButton(in cell: TaskCardTableViewCell) {
+        
         print("Click play!")
         
-            // Find the indexPath for the cell
+        // Find the indexPath for the cell
         if let indexPath = tableView.indexPath(for: cell) {
-                let task = todoList[indexPath.section]
+            // let task = todoList[indexPath.section]
             
-                // Perform navigation to PomodoroViewController
-                let vc = storyboard?.instantiateViewController(withIdentifier: "PomodoroViewController") as! PomodoroViewController
+            // Perform navigation to PomodoroViewController
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "PomodoroViewController") as? PomodoroViewController else {return}
             
-                print(indexPath.section)
+            print(indexPath.section)
             
-                vc.modalPresentationStyle = .fullScreen
-                present(vc, animated: true, completion: nil)
-            }
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
         }
+    }
+    
+    func tappedPlay(sender: TaskCardTableViewCell) {
+        
+        let indexPath = tableView.indexPath(for: sender)
+        print("Did tap at \(String(describing: indexPath?.section))")
+        
+        // assign data to another view
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "PomodoroViewController") as? PomodoroViewController else {return}
+        vc.pomodoroTitle = todoList[indexPath?.section ?? -1].name
+        vc.pomodoroSessions = todoList[indexPath?.section ?? -1].session
+        
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
+    }
+    
     
 }
 
+
+// delegate
 //extension MainViewController: UITableViewDelegate {
 //    
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

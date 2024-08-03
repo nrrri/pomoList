@@ -19,11 +19,9 @@ class PomodoroViewController: UIViewController {
     @IBOutlet weak var breakTimeLabel: UILabel!
     
     // Data
-    var pomodoroTitle: String = "pomoTitle"
-    var pomodoroSessions: String = "test"
-    var remainSession: String = "test"
-    
-    var task: TodoList?
+    var pomodoroTitle: String? = ""
+    var pomodoroSessions: String = ""
+    var remainSession: Int = 0
     
     // Timer
     var setTimer: Timer?
@@ -34,19 +32,26 @@ class PomodoroViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set pomodoro data
-        pomodoroTitle = task?.name ?? "test"
-        print("in pomodoro: \(pomodoroTitle)")
-        
-        remainSession = task?.session ?? "1"
-        pomodoroSessions = task?.session ?? "1"
-        
         // Set pomodoro label
-        titleName.text = pomodoroTitle
+        titleName.text = pomodoroTitle?.uppercased()
+        
+        
+        // set remaining
+       if let duration: Int = Int(pomodoroSessions) {
+           remainSession = duration
+           print("remaining: \(remainSession)")
+        }
+       
         sessions.text = "\(remainSession)/\(pomodoroSessions)"
+        
+        
        
         // Set timer
-        updateTimerLabel()
+        Task {
+            updateTimerLabel()
+        }
+        
+        
     }
     
     @IBAction func startPauseSession(_ sender: UIButton) {
@@ -100,9 +105,11 @@ class PomodoroViewController: UIViewController {
     }
     
     @objc func updateTimer() {
-        var timeRemaining = Int(remainSession) ?? 1
-        while timeRemaining > 0 {
-            timeRemaining -= 1
+       
+        
+        while remainSession > 0 {
+            
+            remainSession -= 1
             
             if totalTime > 0 {
                 totalTime -= 1
@@ -119,8 +126,10 @@ class PomodoroViewController: UIViewController {
             }
         }
         
+        if (remainSession == 0) {
             // show alert done task
-            print("Goodjob! you just finish (title's name)!")
+            print("Goodjob! you just finish \(pomodoroTitle)!")
+        }
         
     }
     

@@ -7,26 +7,31 @@
 
 import UIKit
 
+// proocol
+protocol TaskCardTableViewCellDelegate: AnyObject {
+    func didTapButton(in cell: TaskCardTableViewCell)
+    func tappedPlay(sender: TaskCardTableViewCell)
+}
+
 class TaskCardTableViewCell: UITableViewCell {
     
+    weak var delegate: TaskCardTableViewCellDelegate?
+    
     @IBOutlet weak var title: UILabel!
-    
     @IBOutlet weak var detail: UILabel!
-    
     @IBOutlet weak var pomodoroView: UIView!
-    
     @IBOutlet weak var sessions: UILabel!
-    
     @IBOutlet weak var playButton: UIButton!
     
-    weak var delegate: TaskCardTableViewCellDelegate?
+    
 
         @IBAction func buttonTapped(_ sender: UIButton) {
-            delegate?.didTapButton(in: self)
+            if let delegate = self.delegate {
+                delegate.tappedPlay(sender: self)
+            }
+            
         }
 }
 
-protocol TaskCardTableViewCellDelegate: AnyObject {
-    func didTapButton(in cell: TaskCardTableViewCell)
-}
+
     

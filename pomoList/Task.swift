@@ -4,7 +4,7 @@ import Foundation
 var todoList = [TodoList]()
 
 struct TodoList {
-    var name: String!
+    var name: String?
     var description: String = ""
     var isPomodoroActive: Bool = true
     var session: String = "1"

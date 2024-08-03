@@ -237,7 +237,6 @@
                                                             </buttonConfiguration>
                                                             <connections>
                                                                 <action selector="buttonTapped:" destination="hD2-J2-zbJ" eventType="touchUpInside" id="3Ym-aa-idu"/>
-                                                                <segue destination="i6Q-VD-qhw" kind="presentation" modalPresentationStyle="fullScreen" id="RDD-56-Wza"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -352,13 +351,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task's Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ars-66-cDY">
-                                <rect key="frame" x="113" y="196" width="167" height="39"/>
+                                <rect key="frame" x="113" y="255" width="167" height="39"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6B0-8g-rQ0">
-                                <rect key="frame" x="143.66666666666666" y="243" width="106" height="23"/>
+                                <rect key="frame" x="143.66666666666666" y="302" width="106" height="23"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="irM-LH-gQX">
                                         <rect key="frame" x="81" y="4" width="17" height="15"/>
@@ -387,13 +386,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fg-q9-oZZ">
-                                <rect key="frame" x="116.66666666666669" y="429" width="160" height="67"/>
+                                <rect key="frame" x="116.66666666666669" y="395" width="160" height="67"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="56"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpp-it-nzl">
-                                <rect key="frame" x="176.66666666666666" y="512" width="40" height="40"/>
+                                <rect key="frame" x="176.66666666666666" y="478" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Rpp-it-nzl" secondAttribute="height" multiplier="1:1" id="g1B-wf-tST"/>
                                     <constraint firstAttribute="height" constant="40" id="hZU-LE-ovN"/>
@@ -409,7 +408,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5z-az-PxT">
-                                <rect key="frame" x="182.66666666666666" y="824" width="28" height="28"/>
+                                <rect key="frame" x="182.66666666666666" y="790" width="28" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="d5z-az-PxT" secondAttribute="height" multiplier="1:1" id="4n0-tp-XCP"/>
                                     <constraint firstAttribute="width" secondItem="d5z-az-PxT" secondAttribute="height" multiplier="1:1" id="Jmn-f9-hjs"/>
@@ -427,7 +426,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BREAK TIME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXW-93-0KS">
-                                <rect key="frame" x="147.66666666666666" y="400" width="98" height="21"/>
+                                <rect key="frame" x="147.66666666666666" y="366" width="98" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
