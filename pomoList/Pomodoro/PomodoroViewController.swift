@@ -25,7 +25,9 @@ class PomodoroViewController: UIViewController {
     
     // Timer
     var setTimer: Timer?
-    var totalTime = 45 * 60
+    let pomodoroTime = 5
+    var totalTime = 5 //45 * 60
+    var breakTime = 3
     var isPomodoro = true
     var isTimerRunning = false
     
@@ -35,21 +37,16 @@ class PomodoroViewController: UIViewController {
         // Set pomodoro label
         titleName.text = pomodoroTitle?.uppercased()
         
-        
         // set remaining
-       if let duration: Int = Int(pomodoroSessions) {
-           remainSession = duration
+       if let remaining = Int(pomodoroSessions) {
+           remainSession = remaining
            print("remaining: \(remainSession)")
+           sessions.text = "\(remainSession)/\(pomodoroSessions)"
         }
-       
-        sessions.text = "\(remainSession)/\(pomodoroSessions)"
-       
+        
         // Set timer
-        Task {
-            updateTimerLabel()
-        }
-        
-        
+        updateTimerLabel()
+
     }
     
     @IBAction func startPauseSession(_ sender: UIButton) {
@@ -63,7 +60,7 @@ class PomodoroViewController: UIViewController {
     
     func startPomodoroOrResume() {
         if !isTimerRunning {
-            if totalTime == 45 * 60 || totalTime == 0 {
+            if totalTime == pomodoroTime || totalTime == 0 {
                 startPomodoroTimer()
             } else {
                 resumeTimer()
@@ -84,15 +81,15 @@ class PomodoroViewController: UIViewController {
     func startPomodoroTimer() {
         breakTimeLabel.isHidden = true
         isPomodoro = true
-        startTimer(duration:  3) // test
-//        startTimer(duration:  45 * 60) // 45 minutes
+        startTimer(duration: pomodoroTime) // test
     }
     
     func startBreakTimer() {
+        breakTimeLabel.text = "BREAK TIME"
         breakTimeLabel.isHidden = false
         isPomodoro = false
-        startTimer(duration: 3) // test
-//        startTimer(duration: 15 * 60) // 15 minutes
+        startTimer(duration: breakTime+1) // +1 to show full duration in UI
+        
     }
     
     func startTimer(duration: Int) {
@@ -103,11 +100,6 @@ class PomodoroViewController: UIViewController {
     }
     
     @objc func updateTimer() {
-       
-        while remainSession > 0 {
-            
-            remainSession -= 1
-            
             if totalTime > 0 {
                 totalTime -= 1
                 updateTimerLabel()
@@ -117,17 +109,23 @@ class PomodoroViewController: UIViewController {
                 if isPomodoro {
                     startBreakTimer()
                 } else {
-                    // show alert
-                    print("continue next session?")
+                    // check remain session
+                    updateRemainSession()
+                    if remainSession != 0 {
+                        // show alert
+                        showAlert(message: "Click play to continue next session")
+                        // start new session
+                        isTimerRunning = true
+                        updatePlayPauseButtonWithSymbol()
+                    } else {
+                        print("your task: \(pomodoroSessions) is done!")
+                        startPomodoro.isHidden = true
+                        breakTimeLabel.isHidden = false
+                        breakTimeLabel.text = "YOUR SESSION IS DONE"
+                        // delete/unactivate task using protocol
+                    }
                 }
             }
-        }
-        
-        if (remainSession == 0) {
-            // show alert done task
-            print("Goodjob! you just finish \(pomodoroTitle)!")
-        }
-        
     }
     
     func updateTimerLabel() {
@@ -136,8 +134,20 @@ class PomodoroViewController: UIViewController {
         timer.text = String(format: "%02d:%02d", minutes, seconds)
     }
     
+    func updateRemainSession() {
+        remainSession -= 1
+        sessions.text = "\(remainSession)/\(pomodoroSessions)"
+    }
+    
     func updatePlayPauseButtonWithSymbol() {
         let symbolName = isTimerRunning ? "play.fill" : "pause.fill"
         startPomodoro.setImage(UIImage(systemName: symbolName), for: .normal)
+    }
+    
+    func showAlert(message: String) {
+        let alertController = UIAlertController(title: "Session: \(remainSession) Completed", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

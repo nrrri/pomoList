@@ -18,7 +18,9 @@ class MainViewController: UIViewController {
     @IBOutlet weak var planForTheDay: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
+        tableView.dataSource = self
         
         setUIMonth(label: currentMonth)
 
@@ -94,7 +96,13 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
             cell.pomodoroView.isHidden = false  
             
             // pomodoro session
-            cell.sessions.text = task.session
+            if (task.remainSession > 0) {
+                cell.sessions.text = "\(task.remainSession)/\(task.session)"
+            } else {
+                cell.sessions.text = "DONE"
+                cell.sessions.font = UIFont.boldSystemFont(ofSize: 16.0)
+            }
+            
         }
         
         // assigning delegate
@@ -114,7 +122,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
                 todoList.remove(at: indexPath.section)
                 tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
             }
-
     }
     
     
