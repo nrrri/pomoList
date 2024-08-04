@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class MainViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -30,9 +31,15 @@ class MainViewController: UIViewController {
         } else {
             planForTheDay.text = "Plan For The Day"
             setTableView()
+            sortTodoList() // Sort tasks initially
+            tableView.reloadData()
         }
         
         
+    }
+    
+    func sortTodoList() {
+        todoList.sort { !$0.taskCompleted && $1.taskCompleted }
     }
     
     func setTableView() {
@@ -50,20 +57,11 @@ class MainViewController: UIViewController {
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd")
         label.text = dateFormatter.string(from: date)
     }
-    
-    func setCurrentDate(label: UILabel) {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("d")
-        label.text = dateFormatter.string(from: date)
-    }
 
 }
 
-extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCardTableViewCellDelegate {
+extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCardTableViewCellDelegate, PomodoroViewControllerDelegate {
+      
        
     func numberOfSections(in tableView: UITableView) -> Int {
        
@@ -80,7 +78,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
                 as? TaskCardTableViewCell else {return UITableViewCell()}
 
         // import array
+        sortTodoList()
         let task = todoList[indexPath.section]
+        
         roundCorner(view: cell)
         
         // task's name
@@ -93,17 +93,19 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
             cell.pomodoroView.isHidden = true
             
         } else {
-            cell.pomodoroView.isHidden = false  
+            cell.pomodoroView.isHidden = false
+            cell.sessions.text = "\(task.remainSession)/\(task.session)"
             
             // pomodoro session
-            if (task.remainSession > 0) {
-                cell.sessions.text = "\(task.remainSession)/\(task.session)"
-            } else {
-                cell.sessions.text = "DONE"
-                cell.sessions.font = UIFont.boldSystemFont(ofSize: 16.0)
+            if (task.remainSession == 0) {
+                cell.playButton.setTitle("COMPLETED", for: .disabled)
+                cell.playButton.isEnabled = false
+                cell.layer.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1).cgColor
+                cell.title.textColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
             }
-            
         }
+        
+       
         
         // assigning delegate
         cell.delegate = self // Set the delegate
@@ -130,16 +132,28 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
     func tappedPlay(sender: TaskCardTableViewCell) {
         
         let indexPath = tableView.indexPath(for: sender)
-        print("Did tap at \(String(describing: indexPath?.section))")
         
         // assign data to another view
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "PomodoroViewController") as? PomodoroViewController else {return}
         vc.pomodoroTitle = todoList[indexPath?.section ?? -1].name
-        vc.pomodoroSessions = todoList[indexPath?.section ?? -1].session
+        vc.totalSessions = todoList[indexPath?.section ?? -1].session
+        vc.r_sessions = todoList[indexPath?.section ?? -1].remainSession
         
         vc.modalPresentationStyle = .fullScreen
+        vc.delegate = self
         present(vc, animated: true, completion: nil)
     }
+    
+    // Delegate update session from pomodoro vc
+    func updateSessions(for taskName: String, remainingSessions: Int, checkComplete: Bool) {
+            if let index = todoList.firstIndex(where: { $0.name == taskName }) {
+                todoList[index].remainSession = remainingSessions
+                todoList[index].taskCompleted = checkComplete
+                tableView.reloadData()
+//                tableView.reloadSections(IndexSet(integer: index), with: .automatic)
+                print("update session: \(todoList[index].remainSession) & task status: \(todoList[index].taskCompleted)")
+            }
+        }
     
     
 }

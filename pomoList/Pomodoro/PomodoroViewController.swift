@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol PomodoroViewControllerDelegate: AnyObject {
+    func updateSessions(for taskName: String, remainingSessions: Int, checkComplete: Bool)
+}
+
 class PomodoroViewController: UIViewController {
     // Data from todolist
     @IBOutlet weak var titleName: UILabel!
@@ -20,8 +24,8 @@ class PomodoroViewController: UIViewController {
     
     // Data
     var pomodoroTitle: String? = ""
-    var pomodoroSessions: String = ""
-    var remainSession: Int = 0
+    var totalSessions: String = ""
+    var r_sessions: Int = 0
     
     // Timer
     var setTimer: Timer?
@@ -31,6 +35,8 @@ class PomodoroViewController: UIViewController {
     var isPomodoro = true
     var isTimerRunning = false
     
+    weak var delegate: PomodoroViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,11 +44,10 @@ class PomodoroViewController: UIViewController {
         titleName.text = pomodoroTitle?.uppercased()
         
         // set remaining
-       if let remaining = Int(pomodoroSessions) {
-           remainSession = remaining
-           print("remaining: \(remainSession)")
-           sessions.text = "\(remainSession)/\(pomodoroSessions)"
-        }
+       
+           print("remaining: \(r_sessions)")
+           sessions.text = "\(r_sessions)/\(totalSessions)"
+        
         
         // Set timer
         updateTimerLabel()
@@ -110,20 +115,24 @@ class PomodoroViewController: UIViewController {
                     startBreakTimer()
                 } else {
                     // check remain session
+                    var checkComplete = false
                     updateRemainSession()
-                    if remainSession != 0 {
+                    
+                    if r_sessions != 0 {
                         // show alert
                         showAlert(message: "Click play to continue next session")
                         // start new session
                         isTimerRunning = true
                         updatePlayPauseButtonWithSymbol()
                     } else {
-                        print("your task: \(pomodoroSessions) is done!")
+                        print("your task: \(pomodoroTitle ?? "") is done!")
+                        checkComplete = true
                         startPomodoro.isHidden = true
                         breakTimeLabel.isHidden = false
                         breakTimeLabel.text = "YOUR SESSION IS DONE"
-                        // delete/unactivate task using protocol
                     }
+                    
+                    delegate?.updateSessions(for: pomodoroTitle ?? "", remainingSessions: r_sessions, checkComplete: checkComplete)
                 }
             }
     }
@@ -135,8 +144,8 @@ class PomodoroViewController: UIViewController {
     }
     
     func updateRemainSession() {
-        remainSession -= 1
-        sessions.text = "\(remainSession)/\(pomodoroSessions)"
+        r_sessions -= 1
+        sessions.text = "\(r_sessions)/\(totalSessions)"
     }
     
     func updatePlayPauseButtonWithSymbol() {
@@ -145,7 +154,7 @@ class PomodoroViewController: UIViewController {
     }
     
     func showAlert(message: String) {
-        let alertController = UIAlertController(title: "Session: \(remainSession) Completed", message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Session: \(r_sessions) Completed", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)

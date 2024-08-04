@@ -64,7 +64,7 @@ class AddEditViewController: UIViewController {
                 return
             }
 
-        let newTodoList = TodoList(name: titleName.text ?? "", description: todoListDetail.text ?? "", isActive: pomodoroToggle.isOn, ss: setSession, rss: Int(setSession) ?? 0)
+        let newTodoList = TodoList(name: titleName.text ?? "", description: todoListDetail.text ?? "", isActive: pomodoroToggle.isOn, ss: setSession, rss: Int(setSession) ?? 0, isTaskComplete: false)
         todoList.append(newTodoList)
 
         // navigate back to homepage
