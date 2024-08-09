@@ -8,7 +8,9 @@
 import UIKit
 
 class AddEditViewController: UIViewController {
-
+    var todoItem: TodoList?
+    var onSave: (() -> Void)?
+    
     var setSession: String = "1"
     
     // create list
@@ -26,9 +28,18 @@ class AddEditViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set UI
         roundCorner(view: titleView)
         roundCorner(view: detailView)
         roundCorner(view: pomodoroView)
+        
+        if let item = todoItem {
+            titleName.text = item.name
+            todoListDetail.text = item.description
+            pomodoroToggle.isOn = item.isPomodoroActive
+            sessions.selectedSegmentIndex = (Int(item.session) ?? 1) - 1
+        }
     }
     
     @IBAction func setPomodoroActive(_ sender: UISwitch) {

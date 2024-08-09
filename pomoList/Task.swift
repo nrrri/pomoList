@@ -9,7 +9,7 @@ struct TodoList {
     var isPomodoroActive: Bool = true
     var session: String = "1"
     var remainSession: Int = 1
-    var taskCompleted: Bool = false
+    var isTaskComplete: Bool = false
     
     init(name: String, description: String, isActive: Bool, ss: String, rss: Int, isTaskComplete: Bool) {
         self.name = name
@@ -17,6 +17,6 @@ struct TodoList {
         self.isPomodoroActive = isActive
         self.session = ss
         self.remainSession = rss
-        self.taskCompleted = isTaskComplete
+        self.isTaskComplete = isTaskComplete
     }
 }
