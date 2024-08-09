@@ -467,7 +467,7 @@
         <!--Add Edit View Controller-->
         <scene sceneID="2jx-g2-ozu">
             <objects>
-                <viewController id="Th8-Mb-Tfz" customClass="AddEditViewController" customModule="pomoList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddEditViewController" id="Th8-Mb-Tfz" customClass="AddEditViewController" customModule="pomoList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="opt-NL-bXY">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

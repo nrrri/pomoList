@@ -4,6 +4,7 @@ import Foundation
 var todoList = [TodoList]()
 
 struct TodoList {
+    var id: UUID
     var name: String?
     var description: String = ""
     var isPomodoroActive: Bool = true
@@ -11,12 +12,13 @@ struct TodoList {
     var remainSession: Int = 1
     var isTaskComplete: Bool = false
     
-    init(name: String, description: String, isActive: Bool, ss: String, rss: Int, isTaskComplete: Bool) {
+    init(id: UUID, name: String? = nil, description: String, isPomodoroActive: Bool, session: String, remainSession: Int, isTaskComplete: Bool) {
+        self.id = id
         self.name = name
         self.description = description
-        self.isPomodoroActive = isActive
-        self.session = ss
-        self.remainSession = rss
+        self.isPomodoroActive = isPomodoroActive
+        self.session = session
+        self.remainSession = remainSession
         self.isTaskComplete = isTaskComplete
     }
 }

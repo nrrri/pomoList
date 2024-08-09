@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PomodoroViewControllerDelegate: AnyObject {
-    func updateSessions(for taskName: String, remainingSessions: Int, checkComplete: Bool)
+    func updateSessions(for taskID: UUID, remainingSessions: Int, checkComplete: Bool)
 }
 
 class PomodoroViewController: UIViewController {
@@ -23,6 +23,7 @@ class PomodoroViewController: UIViewController {
     @IBOutlet weak var breakTimeLabel: UILabel!
     
     // Data
+    var pomodoroID: UUID?
     var pomodoroTitle: String? = ""
     var totalSessions: String = ""
     var r_sessions: Int = 0
@@ -132,7 +133,10 @@ class PomodoroViewController: UIViewController {
                         breakTimeLabel.text = "YOUR SESSION IS DONE"
                     }
                     
-                    delegate?.updateSessions(for: pomodoroTitle ?? "", remainingSessions: r_sessions, checkComplete: checkComplete)
+                    if let taskID = pomodoroID {
+                        delegate?.updateSessions(for: taskID, remainingSessions: r_sessions, checkComplete: checkComplete)
+                    }
+                    
                 }
             }
     }

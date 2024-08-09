@@ -91,19 +91,21 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
         
         if !(task.isPomodoroActive) {
             cell.pomodoroView.isHidden = true
+            let margins = cell.layoutMarginsGuide
+            cell.detail.trailingAnchor.constraint(equalTo: margins.trailingAnchor , constant: 0).isActive = true
             
         } else {
             cell.pomodoroView.isHidden = false
             cell.sessions.text = "\(task.remainSession)/\(task.session)"
-            
-            // pomodoro session
-            if (task.isTaskComplete == true) {
-                cell.playButton.setTitle("COMPLETED", for: .disabled)
-                cell.playButton.isEnabled = false
-                cell.layer.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1).cgColor
-                cell.title.textColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
-                cell.detail.textColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
-            }
+        }
+        
+        // pomodoro session
+        if (task.isTaskComplete == true) {
+            cell.playButton.setTitle("COMPLETED", for: .disabled)
+            cell.playButton.isEnabled = false
+            cell.layer.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1).cgColor
+            cell.title.textColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
+            cell.detail.textColor = UIColor(red: 130/255, green: 130/255, blue: 130/255, alpha: 1)
         }
         
         // assigning delegate
@@ -123,39 +125,49 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completionHandler) in
             todoList.remove(at: indexPath.section)
             tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+            completionHandler(true)
         }
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, completionHandler) in
-            let storyboard = UIStoryboard(name: "MainViewController", bundle: nil)
-                       guard let vc = storyboard.instantiateViewController(withIdentifier: "AddEditViewController") as? AddEditViewController else {return}
-           
-                       // Pass the selected task data
-                              let selectedTask = todoList[indexPath.section]
-           
-                              vc.todoItem = selectedTask
-                              vc.onSave = {
-                                  tableView.reloadData() // Reload the table data after editing
-                              }
-           
-                       // Present the view controller
-                               vc.modalPresentationStyle = .fullScreen
-                               self.present(vc, animated: true, completion: nil)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let vc = storyboard.instantiateViewController(withIdentifier: "AddEditViewController") as? AddEditViewController else {return}
+            
+            // Pass the selected task data
+            let selectedTask = todoList[indexPath.section]
+            
+            vc.todoItem = selectedTask
+            vc.onSave = {
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+            
+            // Present the view controller
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+            
+            completionHandler(true)
         }
         
         // Set finish item
         let finishAction = UIContextualAction(style: .normal, title: "Finish") { (_, _, completionHandler) in
             todoList[indexPath.section].isTaskComplete = true
             tableView.reloadRows(at: [indexPath], with: .automatic)
-            print(todoList[indexPath.section].isTaskComplete)
+            completionHandler(true)
         }
         
         // set UI color
-        editAction.backgroundColor = .systemOrange
-        finishAction.backgroundColor = .systemBlue
+        editAction.backgroundColor = .systemBlue
+        finishAction.backgroundColor = .systemGreen
         
+        // set function order
+        var swipeActions = UISwipeActionsConfiguration()
         // Combine actions into configuration
-            let swipeActions = UISwipeActionsConfiguration(actions: [finishAction, editAction, deleteAction])
-            swipeActions.performsFirstActionWithFullSwipe = false
+        if (todoList[indexPath.section].isTaskComplete == false) {
+            swipeActions = UISwipeActionsConfiguration(actions: [deleteAction,editAction,finishAction])
+        } else {
+            swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+        }
+        
+        swipeActions.performsFirstActionWithFullSwipe = false
         
         return swipeActions
     }
@@ -166,12 +178,16 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
     func tappedPlay(sender: TaskCardTableViewCell) {
         
         let indexPath = tableView.indexPath(for: sender)
+        let task = todoList[indexPath?.section ?? -1]
         
         // assign data to another view
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "PomodoroViewController") as? PomodoroViewController else {return}
-        vc.pomodoroTitle = todoList[indexPath?.section ?? -1].name
-        vc.totalSessions = todoList[indexPath?.section ?? -1].session
-        vc.r_sessions = todoList[indexPath?.section ?? -1].remainSession
+        
+        // passing data
+        vc.pomodoroID = task.id
+        vc.pomodoroTitle = task.name
+        vc.totalSessions = task.session
+        vc.r_sessions = task.remainSession
         
         vc.modalPresentationStyle = .fullScreen
         vc.delegate = self
@@ -179,12 +195,11 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
     }
     
     // Delegate update session from pomodoro vc
-    func updateSessions(for taskName: String, remainingSessions: Int, checkComplete: Bool) {
-            if let index = todoList.firstIndex(where: { $0.name == taskName }) {
+    func updateSessions(for taskID: UUID, remainingSessions: Int, checkComplete: Bool) {
+        if let index = todoList.firstIndex(where: { $0.id == taskID }) {
                 todoList[index].remainSession = remainingSessions
                 todoList[index].isTaskComplete = checkComplete
                 tableView.reloadData()
-//                tableView.reloadSections(IndexSet(integer: index), with: .automatic)
                 print("update session: \(todoList[index].remainSession) & task status: \(todoList[index].isTaskComplete)")
             }
         }

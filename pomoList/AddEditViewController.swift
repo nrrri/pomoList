@@ -10,6 +10,7 @@ import UIKit
 class AddEditViewController: UIViewController {
     var todoItem: TodoList?
     var onSave: (() -> Void)?
+    var isEditingTask = false  // Flag to determine if we are editing [false = new item, true = edit item]
     
     var setSession: String = "1"
     
@@ -39,6 +40,7 @@ class AddEditViewController: UIViewController {
             todoListDetail.text = item.description
             pomodoroToggle.isOn = item.isPomodoroActive
             sessions.selectedSegmentIndex = (Int(item.session) ?? 1) - 1
+            isEditingTask = true
         }
     }
     
@@ -74,10 +76,18 @@ class AddEditViewController: UIViewController {
                 showAlert(message: "Title cannot be empty")
                 return
             }
-
-        let newTodoList = TodoList(name: titleName.text ?? "", description: todoListDetail.text ?? "", isActive: pomodoroToggle.isOn, ss: setSession, rss: Int(setSession) ?? 0, isTaskComplete: false)
-        todoList.append(newTodoList)
-
+        
+        if isEditingTask, let index = todoList.firstIndex(where: { $0.id == todoItem?.id }) {
+            // Update existing task
+            todoList[index] = TodoList(id: todoList[index].id ,name: titleName.text ?? "", description: todoListDetail.text ?? "", isPomodoroActive: pomodoroToggle.isOn, session: setSession, remainSession: Int(setSession) ?? 0, isTaskComplete: todoList[index].isTaskComplete)
+        } else {
+            // Add new task
+            let newTodoList = TodoList(id: UUID(), name: titleName.text ?? "", description: todoListDetail.text ?? "", isPomodoroActive: pomodoroToggle.isOn, session: setSession, remainSession: Int(setSession) ?? 0, isTaskComplete: false)
+            todoList.append(newTodoList)
+        }
+        
+        onSave?()  // Notify about the changes
+        
         // navigate back to homepage
         guard let vc = storyboard?.instantiateViewController(identifier: "MainViewController") as? MainViewController else {return}
             
