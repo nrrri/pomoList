@@ -14,8 +14,6 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var currentMonth: UILabel!
     
-    @IBOutlet weak var currentDate: UILabel!
-    
     @IBOutlet weak var planForTheDay: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +22,7 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
         
         setUIMonth(label: currentMonth)
-
+        
         
         if todoList.count == 0 {
             planForTheDay.text = "No Task Today, Let's add new task!"
@@ -57,14 +55,14 @@ class MainViewController: UIViewController {
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMMd")
         label.text = dateFormatter.string(from: date)
     }
-
+    
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCardTableViewCellDelegate, PomodoroViewControllerDelegate {
-      
-       
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-       
+        
         return todoList.count
     }
     
@@ -74,9 +72,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCardTableViewCell", for: indexPath) 
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCardTableViewCell", for: indexPath)
                 as? TaskCardTableViewCell else {return UITableViewCell()}
-
+        
         // import array
         sortTodoList()
         let task = todoList[indexPath.section]
@@ -84,10 +82,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
         roundCorner(view: cell)
         
         // task's name
-           cell.title.text = task.name?.uppercased()
+        cell.title.text = task.name?.uppercased()
         
         // detail
-           cell.detail.text = task.description
+        cell.detail.text = task.description
         
         if !(task.isPomodoroActive) {
             cell.pomodoroView.isHidden = true
@@ -197,12 +195,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
     // Delegate update session from pomodoro vc
     func updateSessions(for taskID: UUID, remainingSessions: Int, checkComplete: Bool) {
         if let index = todoList.firstIndex(where: { $0.id == taskID }) {
-                todoList[index].remainSession = remainingSessions
-                todoList[index].isTaskComplete = checkComplete
-                tableView.reloadData()
-                print("update session: \(todoList[index].remainSession) & task status: \(todoList[index].isTaskComplete)")
-            }
+            todoList[index].remainSession = remainingSessions
+            todoList[index].isTaskComplete = checkComplete
+            tableView.reloadData()
         }
-    
+    }
     
 }

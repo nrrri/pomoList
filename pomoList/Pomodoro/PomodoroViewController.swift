@@ -30,9 +30,10 @@ class PomodoroViewController: UIViewController {
     
     // Timer
     var setTimer: Timer?
-    let pomodoroTime = 5
-    var totalTime = 5 //45 * 60
-    var breakTime = 3
+    // set to number * 60 for real time
+    let pomodoroTime = 45 // 45 * 60
+    var totalTime = 45 // 45 * 60
+    var breakTime = 15 // 15 * 60
     var isPomodoro = true
     var isTimerRunning = false
     

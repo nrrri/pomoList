@@ -79,8 +79,8 @@
 				159EB0732C584B7600310B19 /* Utilities */,
 				159EB0742C584BAA00310B19 /* Pomodoro */,
 				153FDE602C39E975009B9F0F /* Task.swift */,
-				154E61592C1D0E6300B7C5F4 /* MainViewController.swift */,
 				153FDE622C39F9EA009B9F0F /* TaskCardTableViewCell.swift */,
+				154E61592C1D0E6300B7C5F4 /* MainViewController.swift */,
 				154E61692C1D0EF900B7C5F4 /* AddEditViewController.swift */,
 			);
 			path = pomoList;
