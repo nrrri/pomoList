@@ -98,7 +98,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate, TaskCa
         }
         
         // pomodoro session
-        if (task.isTaskComplete == true) {
+        if (task.isTaskComplete) {
             cell.playButton.setTitle("COMPLETED", for: .disabled)
             cell.playButton.isEnabled = false
             cell.layer.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1).cgColor

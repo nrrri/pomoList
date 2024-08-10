@@ -11,7 +11,4 @@ let CornerRadious: CGFloat = 16
 func roundCorner(view: UIView) {
     // round corner
      view.layer.cornerRadius = CornerRadious
-//    titleView.layer.cornerRadius = roundCorner
-//    detailView.layer.cornerRadius = roundCorner
-//    pomodoroView.layer.cornerRadius = roundCorner
 }

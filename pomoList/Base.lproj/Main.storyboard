@@ -91,7 +91,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVN-dw-kIi">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVN-dw-kIi">
                                                             <rect key="frame" x="124" y="39" width="8" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -124,7 +124,7 @@
                                                         <constraint firstItem="kVN-dw-kIi" firstAttribute="trailing" secondItem="FHU-fF-8Gy" secondAttribute="trailing" constant="-12" id="RTL-0L-3dF"/>
                                                         <constraint firstItem="DSV-Au-VdM" firstAttribute="leading" secondItem="FHU-fF-8Gy" secondAttribute="leading" constant="12" id="Xfn-8Y-HYb"/>
                                                         <constraint firstItem="6IE-Gl-vOW" firstAttribute="centerX" secondItem="kMS-1x-FRV" secondAttribute="centerX" id="iXR-Nh-5DH"/>
-                                                        <constraint firstItem="kVN-dw-kIi" firstAttribute="leading" secondItem="kMS-1x-FRV" secondAttribute="leading" constant="124" id="sRy-H2-2vj"/>
+                                                        <constraint firstItem="kVN-dw-kIi" firstAttribute="leading" relation="lessThanOrEqual" secondItem="kMS-1x-FRV" secondAttribute="leading" constant="124" id="sRy-H2-2vj"/>
                                                         <constraint firstAttribute="bottom" secondItem="FHU-fF-8Gy" secondAttribute="bottom" constant="12" id="u2u-qD-f7R"/>
                                                         <constraint firstItem="DSV-Au-VdM" firstAttribute="top" secondItem="6IE-Gl-vOW" secondAttribute="bottom" constant="8" id="ytE-E4-Yn4"/>
                                                     </constraints>
